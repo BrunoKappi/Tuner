@@ -56,8 +56,9 @@ export const TunerCard: React.FC = () => {
     if (typeof window !== 'undefined') {
       const html = window.document.documentElement;
       const body = window.document.body;
-      console.log('Bkappi Tuner Theme toggled to:', selectedTheme);
-      if (selectedTheme === 'dark') {
+      const themeToApply = selectedTheme || 'dark';
+      console.log('Bkappi Tuner Theme toggled to:', themeToApply);
+      if (themeToApply === 'dark') {
         html.classList.add('dark');
         body.classList.add('dark');
       } else {
@@ -75,7 +76,22 @@ export const TunerCard: React.FC = () => {
   };
 
   const toggleTheme = () => {
-    changeTheme(selectedTheme === 'dark' ? 'light' : 'dark');
+    const nextTheme = (selectedTheme || 'dark') === 'dark' ? 'light' : 'dark';
+    
+    // Aplicar síncrono imediato para garantia visual absoluta
+    if (typeof window !== 'undefined') {
+      const html = window.document.documentElement;
+      const body = window.document.body;
+      if (nextTheme === 'dark') {
+        html.classList.add('dark');
+        body.classList.add('dark');
+      } else {
+        html.classList.remove('dark');
+        body.classList.remove('dark');
+      }
+    }
+    
+    changeTheme(nextTheme);
   };
 
   // Rótulo qualitativo de afinação cromática
@@ -124,10 +140,14 @@ export const TunerCard: React.FC = () => {
           {/* Botão de Tema Sol/Lua */}
           <button
             onClick={toggleTheme}
-            className="text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white transition-colors duration-300 focus:outline-none"
+            className="text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white transition-colors duration-300 focus:outline-none flex items-center justify-center w-8 h-8 rounded-lg hover:bg-slate-100/70 dark:hover:bg-slate-800/40"
             aria-label="Mudar Tema"
           >
-            {selectedTheme === 'dark' ? <Sun className="w-3.5 h-3.5 animate-pulse" /> : <Moon className="w-3.5 h-3.5" />}
+            {(selectedTheme || 'dark') === 'dark' ? (
+              <Sun className="w-3.5 h-3.5 animate-pulse pointer-events-none" />
+            ) : (
+              <Moon className="w-3.5 h-3.5 pointer-events-none" />
+            )}
           </button>
 
           {/* Divisor vertical sutil */}
