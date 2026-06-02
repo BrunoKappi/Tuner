@@ -31,24 +31,24 @@ export const TunerInstrumentSelector: React.FC<TunerInstrumentSelectorProps> = (
 
   return (
     <div className="w-full flex flex-col gap-2">
-      <h3 className="text-[10px] uppercase font-black tracking-widest text-tunerDark-muted text-center md:text-left select-none">
+      <h3 className="text-[9px] uppercase font-black tracking-widest text-slate-400 dark:text-tunerDark-muted text-center md:text-left select-none">
         {t('tuner.instruments.title')}
       </h3>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full">
+      <div className="grid grid-cols-2 md:flex md:flex-col gap-2 w-full">
         {INSTRUMENTS.map((inst) => {
           const isSelected = inst.key === selectedKey;
           return (
             <button
               key={inst.key}
               onClick={() => dispatch(setInstrument(inst.key))}
-              className={`group flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl font-bold text-[10px] sm:text-xs border transition-all duration-300 select-none whitespace-nowrap ${
+              className={`group flex items-center justify-center md:justify-start gap-2 py-2.5 px-3 rounded-xl font-bold text-[10px] md:text-xs border transition-all duration-300 select-none focus:outline-none ${
                 isSelected
                   ? 'bg-tunerState-success/10 border-tunerState-success text-tunerState-success shadow-[0_0_15px_rgba(16,185,129,0.08)]'
-                  : 'bg-slate-800/40 border-slate-700/60 text-tunerDark-muted hover:text-tunerDark-text hover:border-slate-600'
+                  : 'bg-slate-100/70 border-slate-200/60 text-slate-600 hover:bg-slate-200/50 hover:text-slate-950 dark:bg-slate-800/40 dark:border-slate-700/60 dark:text-slate-450 dark:hover:text-white dark:hover:border-slate-600'
               }`}
             >
-              {getIcon(inst.key)}
-              <span>{t(inst.nameKey)}</span>
+              <span className="flex-shrink-0">{getIcon(inst.key)}</span>
+              <span className="whitespace-nowrap">{t(inst.nameKey)}</span>
             </button>
           );
         })}

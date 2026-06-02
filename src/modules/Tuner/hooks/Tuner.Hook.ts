@@ -5,6 +5,7 @@ import {
   setMicrophoneState,
   setMuted,
   setLayout,
+  setTheme,
 } from '../store/Tuner.Slice';
 import type { PitchData, SignalLevel } from '../types/Tuner.Types';
 import AudioProcessor from '../services/Tuner.AudioProcessor';
@@ -17,6 +18,7 @@ export const useTuner = () => {
   const microphoneState = useSelector((state: RootState) => state.tuner.microphoneState);
   const isMuted = useSelector((state: RootState) => state.tuner.isMuted);
   const selectedLayout = useSelector((state: RootState) => state.tuner.selectedLayout);
+  const selectedTheme = useSelector((state: RootState) => state.tuner.selectedTheme);
 
   // Referência persistente e isolada do processador Web Audio
   const processorRef = useRef<AudioProcessor | null>(null);
@@ -102,6 +104,10 @@ export const useTuner = () => {
     dispatch(setLayout(layout));
   };
 
+  const changeTheme = (theme: 'dark' | 'light') => {
+    dispatch(setTheme(theme));
+  };
+
   // Garante liberação de hardware de áudio ao desmontar a página
   useEffect(() => {
     return () => {
@@ -158,11 +164,13 @@ export const useTuner = () => {
     selectedInstrumentKey,
     isMuted,
     selectedLayout,
+    selectedTheme,
     signalLevel: getSignalLevel(),
     startTuner,
     toggleMute,
     restartTuner,
     changeLayout,
+    changeTheme,
   };
 };
 

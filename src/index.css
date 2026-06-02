@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply bg-tunerDark-bg text-tunerDark-text font-sans antialiased selection:bg-tunerState-success/20 selection:text-tunerState-success;
+    @apply bg-slate-50 text-slate-900 dark:bg-tunerDark-bg dark:text-tunerDark-text font-sans antialiased selection:bg-tunerState-success/20 selection:text-tunerState-success transition-colors duration-300;
     margin: 0;
     padding: 0;
     overflow-x: hidden;

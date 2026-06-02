@@ -56,7 +56,7 @@
       "step3": "Watch the indicator: if it's on the left, the string is flat; if on the right, it is sharp.",
       "step4": "Tighten or loosen the string until the center glows green and displays 'In Tune'."
     },
-    "creator": "bkappi.com",
+    "creator": "About the Author",
     "cookies": {
       "text": "Bkappi Tuner uses browser local storage (localStorage) to save your instrument and layout preferences. We do not collect any personal or audio data.",
       "accept": "Accept",

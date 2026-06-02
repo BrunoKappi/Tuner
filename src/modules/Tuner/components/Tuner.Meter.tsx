@@ -73,7 +73,7 @@ export const TunerMeter: React.FC<TunerMeterProps> = ({ cents, status, isActive,
     return (
       <div className="w-full flex flex-col items-center">
         <div className="relative w-full h-16 flex items-end justify-center select-none overflow-hidden">
-          <svg className="w-full h-12 text-slate-700/60" viewBox="0 0 100 20" preserveAspectRatio="none">
+          <svg className="w-full h-12 text-slate-300 dark:text-slate-700/60 transition-colors duration-200" viewBox="0 0 100 20" preserveAspectRatio="none">
             <line x1="10" y1="15" x2="90" y2="15" stroke="currentColor" strokeWidth="0.5" />
             {Array.from({ length: 11 }).map((_, index) => {
               const x = 10 + index * 8;
@@ -99,13 +99,13 @@ export const TunerMeter: React.FC<TunerMeterProps> = ({ cents, status, isActive,
             })}
           </svg>
 
-          <span className="absolute left-[10%] bottom-8 text-[9px] uppercase font-bold tracking-wider text-tunerDark-muted">
+          <span className="absolute left-[10%] bottom-8 text-[9px] uppercase font-bold tracking-wider text-slate-400 dark:text-tunerDark-muted">
             -50
           </span>
-          <span className={`absolute left-[50%] bottom-8 -translate-x-1/2 text-[10px] font-black uppercase tracking-wider transition-colors duration-200 ${isActive && status === 'in_tune' ? 'text-tunerState-success scale-110' : 'text-slate-500'}`}>
+          <span className={`absolute left-[50%] bottom-8 -translate-x-1/2 text-[10px] font-black uppercase tracking-wider transition-colors duration-200 ${isActive && status === 'in_tune' ? 'text-tunerState-success scale-110' : 'text-slate-400 dark:text-slate-500'}`}>
             ▼
           </span>
-          <span className="absolute right-[10%] bottom-8 text-[9px] uppercase font-bold tracking-wider text-tunerDark-muted">
+          <span className="absolute right-[10%] bottom-8 text-[9px] uppercase font-bold tracking-wider text-slate-400 dark:text-tunerDark-muted">
             +50
           </span>
 
@@ -162,7 +162,7 @@ export const TunerMeter: React.FC<TunerMeterProps> = ({ cents, status, isActive,
     return (
       <div className="relative w-full flex flex-col items-center py-2 select-none">
         {/* Velocímetro em SVG */}
-        <svg className="w-56 h-32 text-slate-700/60 transition-colors duration-200" viewBox="0 0 100 60">
+        <svg className="w-56 h-32 text-slate-350 dark:text-slate-700/60 transition-colors duration-200" viewBox="0 0 100 60">
           {/* Arco graduado de fundo */}
           <path
             d="M 15.35 30 A 40 40 0 0 1 84.65 30"
@@ -209,18 +209,17 @@ export const TunerMeter: React.FC<TunerMeterProps> = ({ cents, status, isActive,
             cx="50"
             cy="50"
             r="4"
-            fill="#1E293B"
             stroke={activeColor}
             strokeWidth="1"
-            className="transition-colors duration-200"
+            className="fill-slate-300 dark:fill-slate-800 transition-colors duration-200"
           />
         </svg>
 
         {/* Rótulos estáticos */}
-        <span className="absolute left-[20%] bottom-8 text-[8px] font-black tracking-wider text-tunerDark-muted">
+        <span className="absolute left-[20%] bottom-8 text-[8px] font-black tracking-wider text-slate-400 dark:text-tunerDark-muted">
           L
         </span>
-        <span className="absolute right-[20%] bottom-8 text-[8px] font-black tracking-wider text-tunerDark-muted">
+        <span className="absolute right-[20%] bottom-8 text-[8px] font-black tracking-wider text-slate-400 dark:text-tunerDark-muted">
           H
         </span>
       </div>
@@ -263,19 +262,19 @@ export const TunerMeter: React.FC<TunerMeterProps> = ({ cents, status, isActive,
             style={strobeStyle}
             className={`absolute inset-0 rounded-full border-[5px] border-dashed transition-all duration-300 strobe-ring-spin ${
               !isActive 
-                ? 'border-slate-800' 
+                ? 'border-slate-200 dark:border-slate-800' 
                 : isTune 
                 ? 'border-tunerState-success scale-105 shadow-[0_0_20px_rgba(16,185,129,0.2)]'
-                : 'border-slate-700'
+                : 'border-slate-300 dark:border-slate-700'
             }`}
           />
 
           {/* Anel Interno Estático de Contraste */}
-          <div className={`absolute w-[114px] h-[114px] rounded-full border border-slate-800 bg-slate-900/60 shadow-inner transition-all duration-300 flex flex-col items-center justify-center ${
+          <div className={`absolute w-[114px] h-[114px] rounded-full border border-slate-200 bg-slate-50/90 dark:border-slate-800 dark:bg-slate-900/60 shadow-inner transition-all duration-300 flex flex-col items-center justify-center ${
             isTune ? 'border-tunerState-success/20 bg-tunerState-success/5' : ''
           }`}>
             <span className={`text-[10px] font-black uppercase tracking-wider select-none transition-colors duration-200 ${
-              isTune ? 'text-tunerState-success' : 'text-slate-500'
+              isTune ? 'text-tunerState-success' : 'text-slate-400 dark:text-slate-500'
             }`}>
               {isTune ? 'LOCK' : 'STROBE'}
             </span>
@@ -283,7 +282,7 @@ export const TunerMeter: React.FC<TunerMeterProps> = ({ cents, status, isActive,
         </div>
 
         {/* Mini barra de desvio linear sob o anel */}
-        <div className="w-28 h-1 bg-slate-800/80 rounded-full overflow-hidden mt-6 relative border border-slate-850">
+        <div className="w-28 h-1 bg-slate-200 dark:bg-slate-800/80 rounded-full overflow-hidden mt-6 relative border border-slate-300 dark:border-slate-850">
           {isActive && (
             <div 
               className="absolute w-2 h-2 rounded-full -top-[2px] -translate-x-1/2 transition-all duration-100 ease-out"
@@ -313,7 +312,7 @@ export const TunerMeter: React.FC<TunerMeterProps> = ({ cents, status, isActive,
             {cents > 0 ? `+${cents}` : cents} cents
           </span>
         ) : (
-          <span className="text-[10px] font-black uppercase tracking-widest text-tunerDark-muted">
+          <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-tunerDark-muted">
             -- cents
           </span>
         )}

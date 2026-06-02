@@ -6,6 +6,7 @@ interface TunerState {
   microphoneState: MicrophoneState;
   isMuted: boolean;
   selectedLayout: 'analog' | 'meter' | 'strobe';
+  selectedTheme: 'dark' | 'light';
 }
 
 const getSavedInstrument = (): InstrumentKey => {
@@ -22,11 +23,19 @@ const getSavedLayout = (): 'analog' | 'meter' | 'strobe' => {
   return 'meter';
 };
 
+const getSavedTheme = (): 'dark' | 'light' => {
+  if (typeof window !== 'undefined') {
+    return (localStorage.getItem('bkappi_tuner_theme') as 'dark' | 'light') || 'dark';
+  }
+  return 'dark';
+};
+
 const initialState: TunerState = {
   selectedInstrumentKey: getSavedInstrument(),
   microphoneState: 'idle',
   isMuted: false,
   selectedLayout: getSavedLayout(),
+  selectedTheme: getSavedTheme(),
 };
 
 export const tunerSlice = createSlice({
@@ -51,18 +60,26 @@ export const tunerSlice = createSlice({
         localStorage.setItem('bkappi_tuner_layout', action.payload);
       }
     },
+    setTheme: (state, action: PayloadAction<'dark' | 'light'>) => {
+      state.selectedTheme = action.payload;
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('bkappi_tuner_theme', action.payload);
+      }
+    },
     resetTunerState: (state) => {
       state.selectedInstrumentKey = 'acoustic_guitar';
       state.microphoneState = 'idle';
       state.isMuted = false;
       state.selectedLayout = 'meter';
+      state.selectedTheme = 'dark';
       if (typeof window !== 'undefined') {
         localStorage.removeItem('bkappi_tuner_instrument');
         localStorage.removeItem('bkappi_tuner_layout');
+        localStorage.removeItem('bkappi_tuner_theme');
       }
     },
   },
 });
 
-export const { setInstrument, setMicrophoneState, setMuted, setLayout, resetTunerState } = tunerSlice.actions;
+export const { setInstrument, setMicrophoneState, setMuted, setLayout, setTheme, resetTunerState } = tunerSlice.actions;
 export default tunerSlice.reducer;
