@@ -1,108 +1,113 @@
-# 🎸 Bkappi Tuner - Afinador Cromático Online de Alta Precisão
+# 🎸 Bkappi Tuner - High-Precision Online Chromatic Tuner
 
-**Bkappi Tuner** é uma aplicação web moderna de alto desempenho focada exclusivamente na afinação rápida e intuitiva de instrumentos de corda, com suporte otimizado para **Violão**, **Guitarra** e **Baixo**.
+**Bkappi Tuner** is a modern, high-performance web application focused exclusively on the fast and intuitive tuning of stringed instruments, with optimized support for **Acoustic Guitar**, **Electric Guitar**, and **Bass**.
 
-O projeto funciona **100% no navegador**, executado inteiramente de forma local (offline) no dispositivo do usuário, sem necessidade de instalações, cadastro ou envio de dados de áudio para servidores externos.
+The project works **100% in the browser**, running entirely locally (offline) on the user's device, with no installation, registration, or transmission of audio data to external servers required.
 
----
-
-## ✨ Características Principais
-
-*   **100% Client-Side:** Captura do sinal do microfone local e processamento digital de áudio totalmente no navegador usando a **Web Audio API**.
-*   **Privacidade Total:** Zero dados de áudio armazenados ou enviados para servidores externos.
-*   **Detecção Cromática Avançada:** Identifica de forma precisa qualquer uma das 12 notas musicais da escala cromática e sua oitava correspondente (de C0 a B8).
-*   **Estabilidade de Ponteiro (DSP Engineering):** Ponteiro analógico graduado que desliza com física real de amortecimento, evitando oscilações abruptas.
-*   **Filtro por Moda Estatística:** Implementa um algoritmo que bloqueia notas instáveis analisando o histórico recente de detecção, estabilizando a nota exibida e a oitava.
-*   **Indicador de Nível de Entrada (RMS):** Classifica visualmente a intensidade sonora detectada em "Sem sinal", "Sinal fraco" e "Bom sinal".
-*   **Seletor de Instrumentos Reativo:** Perfis pré-definidos para Violão, Guitarra e Baixo, com destaque visual indicando qual corda física está próxima da nota tocada.
-*   **Design Premium Minimalista:** Tema escuro nativo no estilo Glassmorphism, com micro-animações, micro-transições fluidas a 60 FPS e suporte internacional completo (i18n).
+<p align="center">
+  <img src="https://cdn.bkappi.com/GithubReadmeAssets/Tuner/TunerDarkTheme.png" alt="Bkappi Tuner Dark Theme" width="49%" />
+  <img src="https://cdn.bkappi.com/GithubReadmeAssets/Tuner/TunerLightTheme.png" alt="Bkappi Tuner Light Theme" width="49%" />
+</p>
 
 ---
 
-## 🛠️ Stack Tecnológica
+## ✨ Key Features
+
+*   **100% Client-Side:** Captures the local microphone signal and performs digital audio processing entirely in the browser using the **Web Audio API**.
+*   **Total Privacy:** Zero audio data is stored or uploaded to external servers.
+*   **Advanced Chromatic Detection:** Accurately identifies any of the 12 musical notes of the chromatic scale and their corresponding octave (from C0 to B8).
+*   **Stable Pointer (DSP Engineering):** Graduated analog pointer that glides with real physics-based damping, preventing abrupt oscillations.
+*   **Statistical Mode Filtering:** Implements an algorithm that filters out unstable notes by analyzing the recent detection history, stabilizing the displayed note and octave.
+*   **Input Level Indicator (RMS):** Visually classifies the detected sound intensity into "No signal", "Weak signal", and "Good signal".
+*   **Reactive Instrument Selector:** Predefined profiles for Acoustic Guitar, Electric Guitar, and Bass, with a visual indicator showing which physical string is closest to the played note.
+*   **Premium Minimalist Design:** Native dark mode with a Glassmorphism aesthetic, fluid micro-animations, smooth transitions at 60 FPS, and full internationalization support (i18n).
+
+---
+
+## 🛠️ Tech Stack
 
 *   **Core:** React 19, TypeScript, Vite
-*   **Gerenciamento de Estado:** Redux Toolkit (para configurações estruturais) e React State (para processamento de fluxo a 60 FPS)
-*   **Estilização:** Tailwind CSS v3 e PostCSS (com fontes Inter e Outfit)
-*   **Algoritmo de Frequência:** Pitchy (biblioteca otimizada de detecção de pitch via FFT)
-*   **Internacionalização:** i18next e react-i18next (suporte total a Inglês e Português do Brasil de forma 100% offline)
-*   **Iconografia:** Lucide React
+*   **State Management:** Redux Toolkit (for structural settings) and React State (for 60 FPS stream processing)
+*   **Styling:** Tailwind CSS v3 and PostCSS (using Inter and Outfit fonts)
+*   **Pitch Detection Algorithm:** Pitchy (optimized pitch detection library using FFT)
+*   **Internationalization:** i18next and react-i18next (full offline English and Brazilian Portuguese support)
+*   **Iconography:** Lucide React
 
 ---
 
-## 🧠 Arquitetura Técnica e Engenharia de Sinais
+## 🧠 Technical Architecture & Signal Engineering
 
-Para solucionar a sensibilidade excessiva e variações abruptas de frequência (comuns em transientes de cordas ou harmônicos secundários), o afinador conta com três mecanismos de processamento digital no cliente:
+To solve the issue of excessive sensitivity and abrupt frequency fluctuations (common in string transients or secondary harmonics), the tuner utilizes three client-side digital processing mechanisms:
 
-1.  **Gate de Amplitude RMS (Root Mean Square):**
-    Calcula a energia real do buffer de áudio capturado e impede a análise de ruídos insignificantes do ambiente.
-2.  **Média Móvel Exponencial (EMA - Exponential Moving Average):**
-    Aplica um filtro passa-baixas de frequência com coeficiente $\alpha = 0.08$ para amortecer a agulha virtual de cents. Se houver uma variação maior que $5\%$ (representando uma real mudança de nota), o filtro é reiniciado instantaneamente para manter o afinador extremamente responsivo.
-3.  **Filtragem por Moda Estatística:**
-    Mantém as últimas 9 leituras de notas em um buffer circular e exibe a **Moda** (a nota com maior contagem no histórico). Isso descarta completamente picos transientes ou harmônicos instáveis.
+1.  **RMS (Root Mean Square) Amplitude Gate:**
+    Calculates the actual energy of the captured audio buffer to block insignificant ambient noise from being analyzed.
+2.  **Exponential Moving Average (EMA):**
+    Applies a low-pass frequency filter with a coefficient of $\alpha = 0.08$ to smooth the virtual cents needle. If a frequency jump greater than $5\%$ is detected (indicating a real note change), the filter resets instantly to keep the tuner highly responsive.
+3.  **Statistical Mode Filtering:**
+    Keeps the last 9 note readings in a circular buffer and displays the **Mode** (the note with the highest occurrence count in history). This completely filters out transient spikes or unstable harmonics.
 
 ---
 
-## 📂 Estrutura de Pastas
+## 📂 Folder Structure
 
-A aplicação segue uma arquitetura modular inspirada em **Domain-Driven Design (DDD)**:
+The application follows a modular architecture inspired by **Domain-Driven Design (DDD)**:
 
 ```txt
 src/
 ├── core/
 │   ├── store/
-│   │   └── Store.ts               # Redux Store global
+│   │   └── Store.ts               # Global Redux Store
 │   └── i18n/
-│       └── i18n.ts                # Inicialização i18next offline
+│       └── i18n.ts                # Offline i18next initialization
 ├── modules/
 │   └── Tuner/
 │       ├── components/
-│       │   ├── Tuner.Card.tsx               # Contêiner central e visualizador
-│       │   ├── Tuner.Meter.tsx              # Régua analógica SVG graduada
-│       │   ├── Tuner.InstrumentSelector.tsx # Seletor de instrumentos
-│       │   ├── Tuner.StatusDisplay.tsx      # Nota, oitava, corda e frequências
-│       │   ├── Tuner.Controls.tsx           # Botões silenciar/reiniciar
-│       │   └── Tuner.QuickInstructions.tsx  # Manual e guia rápido de uso
+│       │   ├── Tuner.Card.tsx               # Central container and visualizer
+│       │   ├── Tuner.Meter.tsx              # SVG graduated analog meter
+│       │   ├── Tuner.InstrumentSelector.tsx # Instrument selector
+│       │   ├── Tuner.StatusDisplay.tsx      # Note, octave, string, and frequencies
+│       │   ├── Tuner.Controls.tsx           # Mute and reset controls
+│       │   └── Tuner.QuickInstructions.tsx  # Quick user manual and guide
 │       ├── hooks/
-│       │   └── Tuner.Hook.ts                # Custom Hook reativo de áudio
+│       │   └── Tuner.Hook.ts                # Reactive custom hook for audio
 │       ├── services/
-│       │   └── Tuner.AudioProcessor.ts      # Motor Web Audio API + Pitchy
+│       │   └── Tuner.AudioProcessor.ts      # Web Audio API engine + Pitchy
 │       ├── store/
-│       │   └── Tuner.Slice.ts               # Estado e preferências no Redux
+│       │   └── Tuner.Slice.ts               # Redux state and preferences
 │       ├── types/
-│       │   └── Tuner.Types.ts               # Interfaces TypeScript de domínio
+│       │   └── Tuner.Types.ts               # Domain TypeScript interfaces
 │       ├── constants/
-│       │   └── Tuner.Constants.ts           # Definições físicas das afinações e limiares
+│       │   └── Tuner.Constants.ts           # Tunings physical definitions and thresholds
 │       └── translations/
-│           ├── pt-BR.json                   # Traduções em Português
-│           └── en.json                      # Traduções em Inglês
+│           ├── pt-BR.json                   # Portuguese translations
+│           └── en.json                      # English translations
 ```
 
 ---
 
-## 🚀 Como Executar Localmente
+## 🚀 How to Run Locally
 
-### Pré-requisitos
-Certifique-se de ter o **Node.js** instalado em seu sistema (v18 ou superior recomendado).
+### Prerequisites
+Make sure you have **Node.js** installed on your system (v18 or higher recommended).
 
-1.  **Clone o repositório:**
+1.  **Clone the repository:**
     ```bash
     git clone git@github.com:BrunoKappi/Tuner.git
     cd Tuner
     ```
 
-2.  **Instale as dependências:**
+2.  **Install dependencies:**
     ```bash
     npm install
     ```
 
-3.  **Inicie o servidor de desenvolvimento:**
+3.  **Start the development server:**
     ```bash
     npm run dev
     ```
-    Acesse o link local (ex: `http://localhost:5173`) exibido no terminal.
+    Access the local link (e.g., `http://localhost:5173`) displayed in the terminal.
 
-4.  **Para compilar a versão otimizada de produção:**
+4.  **To build the optimized production version:**
     ```bash
     npm run build
     ```
