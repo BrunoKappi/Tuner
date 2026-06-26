@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bkappi Tuner is a premium, high-precision web chromatic tuner for guitar, bass, and other stringed instruments. 100% client-side, offline-capable, and privacy-first.">
+  <meta name="keywords" content="tuner, chromatic tuner, guitar tuner, bass tuner, web audio api, online tuner, free tuner, bruno kappi, digital signal processing">
+  <meta name="author" content="Bruno Kappi">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tuner.bkappi.com/">
+  <meta property="og:title" content="Bkappi Tuner - High-Precision Web Chromatic Tuner">
+  <meta property="og:description" content="Tune your acoustic guitar, electric guitar, or bass with absolute precision directly in your browser. 100% private, client-side DSP, and offline-capable.">
+  <meta property="og:image" content="https://cdn.bkappi.com/ProjectsAssets/Tuner/LandingPage/LandingPage/TunerDarkTheme.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://tuner.bkappi.com/">
+  <meta property="twitter:title" content="Bkappi Tuner - High-Precision Web Chromatic Tuner">
+  <meta property="twitter:description" content="Tune your acoustic guitar, electric guitar, or bass with absolute precision directly in your browser. 100% private, client-side DSP, and offline-capable.">
+  <meta property="twitter:image" content="https://cdn.bkappi.com/ProjectsAssets/Tuner/LandingPage/LandingPage/TunerDarkTheme.png">
+
+  <title>Bkappi Tuner - High-Precision Web Chromatic Tuner</title>
+  
+  <!-- Favicon and Icon -->
+  <link rel="icon" type="image/x-icon" href="https://cdn.bkappi.com/ProjectsAssets/BkappiGeneral/bkappiIcon.ico">
+  <link rel="canonical" href="https://tuner.bkappi.com/">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="index.css">
+
+  <!-- JSON-LD Structured Data for SEO -->
+  <script type="application/ld-json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Bkappi Tuner",
+      "url": "https://tuner.bkappi.com/",
+      "image": "https://cdn.bkappi.com/ProjectsAssets/Tuner/LandingPage/LandingPage/TunerDarkTheme.png",
+      "description": "High-precision online chromatic tuner for acoustic guitar, electric guitar, and bass. Processes audio 100% locally in the browser.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires microphone permission and Web Audio API support.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Bruno Kappi",
+        "url": "https://myportfolio.bkappi.com/"
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Background Decorative Blurs -->
+  <div class="glow-bg glow-bg-1" id="glow1"></div>
+  <div class="glow-bg glow-bg-2" id="glow2"></div>
+
+  <!-- Navbar -->
+  <header class="navbar" id="main-header">
+    <div class="container navbar-container">
+      <a href="#" class="logo" id="nav-logo">
+        <img src="https://cdn.bkappi.com/ProjectsAssets/BkappiGeneral/bkappiIcon.ico" alt="Bkappi Icon" class="logo-icon">
+        <span class="logo-text">Bkappi <span class="accent-text">Tuner</span></span>
+      </a>
+      <nav class="nav-menu" id="nav-menu-bar">
+        <a href="#features" class="nav-link" id="link-features">Features</a>
+        <a href="#dsp" class="nav-link" id="link-dsp">Signal Processing</a>
+        <a href="#developer" class="nav-link" id="link-developer">Developer</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="https://tuner.bkappi.com/" class="btn btn-secondary btn-sm" id="btn-nav-cta" target="_blank" rel="noopener">Open App</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <span class="hero-tagline" id="hero-badge">100% Client-Side DSP</span>
+        <h1 class="hero-title" id="hero-main-title">
+          Tuning Perfection. <br>
+          <span class="gradient-text">Right in Your Browser.</span>
+        </h1>
+        <p class="hero-subtitle" id="hero-description">
+          Bkappi Tuner is a professional-grade, high-precision chromatic tuner. Built with state-of-the-art Audio DSP algorithms to deliver steady, ultra-accurate feedback without lag or privacy concerns.
+        </p>
+        <div class="hero-buttons">
+          <a href="https://tuner.bkappi.com/" class="btn btn-primary" id="btn-hero-cta" target="_blank" rel="noopener">
+            Start Tuning Now
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="#features" class="btn btn-tertiary" id="btn-hero-learn">Learn More</a>
+        </div>
+        <div class="hero-stats" id="hero-stats-row">
+          <div class="stat-item">
+            <span class="stat-num">0.1 Hz</span>
+            <span class="stat-label">Frequency Resolution</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Private & Offline</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">&lt; 15ms</span>
+            <span class="stat-label">Response Time</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Interactive Showcase Area -->
+      <div class="hero-showcase" id="app-preview-container">
+        <div class="showcase-card">
+          <div class="showcase-header">
+            <div class="window-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="showcase-tabs">
+              <button class="showcase-tab active" id="tab-dark" onclick="switchTheme('dark')">Dark Theme</button>
+              <button class="showcase-tab" id="tab-light" onclick="switchTheme('light')">Light Theme</button>
+            </div>
+          </div>
+          <div class="showcase-body">
+            <img src="https://cdn.bkappi.com/ProjectsAssets/Tuner/LandingPage/LandingPage/TunerDarkTheme.png" alt="Bkappi Tuner Dark Theme Interface" class="preview-image active" id="img-preview-dark">
+            <img src="https://cdn.bkappi.com/ProjectsAssets/Tuner/LandingPage/LandingPage/TunerLighttheme.png" alt="Bkappi Tuner Light Theme Interface" class="preview-image" id="img-preview-light">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" id="features-title">Engineered for Precision</h2>
+        <p class="section-subtitle">Packed with features designed to replace your hardware tuner with a clean, web-based alternative.</p>
+      </div>
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card" id="feat-dsp">
+          <div class="feature-icon-wrapper">
+            <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+          <h3>Advanced Chromatic Engine</h3>
+          <p>Instantly identifies any of the 12 chromatic scale notes and octaves from C0 to B8, making it perfect for custom and standard tunings.</p>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="feature-card" id="feat-profiles">
+          <div class="feature-icon-wrapper">
+            <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18V5l12-2v13"></path>
+              <circle cx="6" cy="18" r="3"></circle>
+              <circle cx="18" cy="16" r="3"></circle>
+            </svg>
+          </div>
+          <h3>Instrument Profiles</h3>
+          <p>Predefined profiles for Acoustic Guitar, Electric Guitar, and Bass, showing the specific physical string closest to the frequency.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card" id="feat-privacy">
+          <div class="feature-icon-wrapper">
+            <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h3>Absolute Privacy</h3>
+          <p>No audio files are sent to remote servers. All signal processing runs completely local, secure, and client-side.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card" id="feat-damp">
+          <div class="feature-icon-wrapper">
+            <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <h3>Damped Physics Needle</h3>
+          <p>Features an analog virtual cents pointer needle modeled with structural physics damping to eliminate jitter and flickering.</p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-card" id="feat-i18n">
+          <div class="feature-icon-wrapper">
+            <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <h3>Global Localization</h3>
+          <p>Full i18n support in English and Brazilian Portuguese, working entirely offline for absolute convenience.</p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-card" id="feat-ux">
+          <div class="feature-icon-wrapper">
+            <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+            </svg>
+          </div>
+          <h3>Premium Design UI</h3>
+          <p>Glassmorphic design with a customizable fluid dark/light aesthetic, responsive layout, and smooth 60 FPS transitions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DSP Section -->
+  <section class="dsp-section" id="dsp">
+    <div class="container dsp-grid">
+      <div class="dsp-visual">
+        <div class="dsp-card-inner">
+          <div class="dsp-bar-graph">
+            <div class="dsp-bar" style="height: 40%"></div>
+            <div class="dsp-bar" style="height: 65%"></div>
+            <div class="dsp-bar" style="height: 85%"></div>
+            <div class="dsp-bar active" style="height: 98%"></div>
+            <div class="dsp-bar" style="height: 75%"></div>
+            <div class="dsp-bar" style="height: 50%"></div>
+            <div class="dsp-bar" style="height: 30%"></div>
+          </div>
+          <div class="dsp-glow-indicator">440.0 Hz</div>
+        </div>
+      </div>
+      <div class="dsp-content">
+        <span class="hero-tagline">DSP Architecture</span>
+        <h2>How does the high-precision detection work?</h2>
+        <p>To eliminate typical web tuner fluctuations caused by string transient harmonics and background noise, Bkappi Tuner implements three layers of digital signal processing:</p>
+        
+        <ul class="dsp-steps">
+          <li>
+            <div class="step-num">1</div>
+            <div>
+              <strong>RMS Amplitude Gate:</strong>
+              <p>Calculates the Root Mean Square of the captured buffer to block ambient background noise from triggering false notes.</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-num">2</div>
+            <div>
+              <strong>Exponential Moving Average (EMA):</strong>
+              <p>Applies a mathematical low-pass filter (α = 0.18) to the frequency needle. It detects frequency jumps > 8% and resets instantly to ensure instantaneous responsiveness on real changes.</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-num">3</div>
+            <div>
+              <strong>Statistical Mode Filtering:</strong>
+              <p>Maintains a circular buffer of the last 12 readings and outputs the statistical Mode. This completely dampens harmonic peaks and delivers solid, stable pitch feedback.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container cta-container">
+      <h2>Ready to tune your instrument?</h2>
+      <p>No downloads, no installations, no sign-ups. Connect your microphone and tune with absolute precision.</p>
+      <a href="https://tuner.bkappi.com/" class="btn btn-primary btn-lg" id="btn-footer-cta" target="_blank" rel="noopener">
+        Start Tuning Online
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- About the Developer Section -->
+  <section class="developer-section" id="developer">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">About the Developer</h2>
+        <p class="section-subtitle">Meet the creator behind Bkappi Tuner.</p>
+      </div>
+      
+      <div class="dev-card" id="dev-profile-card">
+        <div class="dev-card-header">
+          <img src="https://cdn.bkappi.com/BrunoKappi/Images/ProfilePicture.jpg" alt="Bruno Kappi profile picture" class="dev-photo">
+          <div class="dev-meta">
+            <h3 class="dev-name">Bruno Kappi</h3>
+            <p class="dev-title">Fullstack Developer & Systems Analyst</p>
+            <p class="dev-location">
+              <svg class="pin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              Novo Hamburgo, Rio Grande do Sul, Brazil
+            </p>
+          </div>
+        </div>
+        
+        <div class="dev-body">
+          <p>With a background in both industrial automation and modern web development, Bruno brings a rare blend of technical depth and product vision to everything he builds.</p>
+          <p>He believes software should be elegant, efficient, and most of all, useful.</p>
+        </div>
+        
+        <div class="dev-links">
+          <a href="https://myportfolio.bkappi.com/" class="dev-link-item" target="_blank" rel="noopener" id="dev-portfolio">
+            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Portfolio
+          </a>
+          <a href="https://www.linkedin.com/in/brunokappi/" class="dev-link-item" target="_blank" rel="noopener" id="dev-linkedin">
+            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            LinkedIn
+          </a>
+          <a href="https://blog.bkappi.com/" class="dev-link-item" target="_blank" rel="noopener" id="dev-blog">
+            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            Blog
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <img src="https://cdn.bkappi.com/ProjectsAssets/BkappiGeneral/bkappiIcon.ico" alt="Bkappi Icon" class="logo-icon-sm">
+        <span>© <span id="current-year"></span> Bkappi Tuner. All rights reserved.</span>
+      </div>
+      <div class="footer-right">
+        <span>Designed for musicians, engineered for precision.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="index.js"></script>
+</body>
+</html>

@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 graphify-out/
+
+# AI database
+kb_database.md

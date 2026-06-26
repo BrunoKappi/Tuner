@@ -5,9 +5,14 @@
 The project works **100% in the browser**, running entirely locally (offline) on the user's device, with no installation, registration, or transmission of audio data to external servers required.
 
 <p align="center">
-  <img src="https://cdn.bkappi.com/GithubReadmeAssets/Tuner/TunerDarkTheme.png" alt="Bkappi Tuner Dark Theme" width="49%" />
-  <img src="https://cdn.bkappi.com/GithubReadmeAssets/Tuner/TunerLightTheme.png" alt="Bkappi Tuner Light Theme" width="49%" />
+  <img src="https://cdn.bkappi.com/ProjectsAssets/Tuner/LandingPage/GithubReadmeAssets/TunerDarkTheme.png" alt="Bkappi Tuner Dark Theme" width="49%" />
+  <img src="https://cdn.bkappi.com/ProjectsAssets/Tuner/LandingPage/GithubReadmeAssets/TunerLighttheme.png" alt="Bkappi Tuner Light Theme" width="49%" />
 </p>
+
+---
+
+## 🌐 Landing Page
+A dedicated, SEO-optimized, static presentation page resides under the `/landing-page` directory. It outlines the core digital signal processing mechanics, contains a live light/dark theme visual switcher, links to production environments, and displays details about the developer.
 
 ---
 
